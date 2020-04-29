@@ -3,6 +3,7 @@ import { create } from './accounts/create';
 import { deposit } from './accounts/deposit';
 import { debit } from './accounts/debit';
 import { get } from './accounts/get';
+import { remove } from './accounts/remove';
 
 const router = express.Router();
 
@@ -28,7 +29,17 @@ router.get('/:id', async (req, res) => {
       error: error.message,
     });
   }
-});
+})
+  .delete('/:id', async (req, res) => {
+    try {
+      await remove({id: req.params.id});
+      res.end();
+    } catch (error) {
+      res.status(400).json({
+        error: error.message,
+      });
+    }
+  });;
 
 router.patch('/:id/deposit', async (req, res) => {
   try {
