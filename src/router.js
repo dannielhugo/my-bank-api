@@ -2,7 +2,7 @@ import express from 'express';
 import { create } from './accounts/create';
 import { deposit } from './accounts/deposit';
 import { debit } from './accounts/debit';
-import { get } from './accounts/update';
+import { get } from './accounts/get';
 
 const router = express.Router();
 
@@ -30,9 +30,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.patch('/deposit', async (req, res) => {
+router.patch('/:id/deposit', async (req, res) => {
   try {
-    const account = await deposit(req.body);
+    const account = await deposit({id: req.params.id, ...req.body});
 
     res.json({data: account});
   } catch (error) {
@@ -42,9 +42,9 @@ router.patch('/deposit', async (req, res) => {
   }
 });
 
-router.patch('/debit', async (req, res) => {
+router.patch('/:id/debit', async (req, res) => {
   try {
-    const account = await debit(req.body);
+    const account = await debit({id: req.params.id, ...req.body});
 
     res.json({data: account});
   } catch (error) {

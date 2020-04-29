@@ -3,9 +3,9 @@ import { getData, writeData } from '../db/data';
 export async function update(account) {
   const data = await getData();
   
-  const acc = data.accounts.findIndex((acc) => acc.id === +id);
+  const index = data.accounts.findIndex((acc) => acc.id === +account.id);
 
-  if (acc < 0) {
+  if (index < 0) {
     throw new Error('account not found');
   }
 
