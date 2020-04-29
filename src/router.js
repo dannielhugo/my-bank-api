@@ -10,16 +10,17 @@ router.post('/', async (req, res) => {
   try {
     const account = await create(req.body);
 
-    res.json({data: account});
+    res.json({ data: account });
   } catch (error) {
     res.status(400).json({
       error: error.message,
     });
   }
-})
-.get('/', async (req, res) => {
+});
+  
+router.get('/:id', async (req, res) => {
   try {
-    const account = await get(req.body);
+    const account = await get({id: req.params.id});
 
     res.json({data: account});
   } catch (error) {

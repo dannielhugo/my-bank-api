@@ -1,13 +1,15 @@
-import { getById } from './get_by_id';
+import { getData, writeData } from '../db/data';
 
-export async function get(request) {
-  const { id, balance } = request;
-
-  const account = await getById(id);
+export async function update(account) {
+  const data = await getData();
   
-  if (!account) {
+  const acc = data.accounts.findIndex((acc) => acc.id === +id);
+
+  if (acc < 0) {
     throw new Error('account not found');
   }
 
-  return account;
+  data.accounts[index] = account;
+
+  await writeData(data);
 }
