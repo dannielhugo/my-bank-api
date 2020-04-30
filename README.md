@@ -78,4 +78,4 @@ $ npm run start
 
 ## Insomnia 
 
-Download [this file](/Insomnia_2020-04-29) and execute on [Insomnia](https://insomnia.rest/).
+Download [this file](/Insomnia_2020-04-29.json) and execute on [Insomnia](https://insomnia.rest/).
